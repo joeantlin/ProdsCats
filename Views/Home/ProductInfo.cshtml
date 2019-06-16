@@ -1,0 +1,26 @@
+@model Add
+
+<h1>@ViewBag.ThisProduct.Name</h1>
+<p><a href="/">Back to Products</a></p>
+
+<h2>Categories</h2>
+
+@foreach(var i in @ViewBag.ThisProduct.Categories)
+{
+    <p>@i.Category.Name</p>
+}
+
+<h2>Add Category</h2>
+
+<form asp-action="AddProduct" asp-controller="Home" asp-route-pId="@ViewBag.ThisProduct.Id"  method="post">
+    <label>
+        Add Category
+        <select asp-for="FindId">
+            @foreach(Category i in @ViewBag.MyCategories)
+                {   
+                    <option value="@i.Id">@i.Name</option>
+                }
+        </select>
+        <button>Submit</button>
+    </label>
+</form>
